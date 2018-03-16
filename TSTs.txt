@@ -1,0 +1,234 @@
+%%HP: T(3)A(R)F(.);
+DIR
+  VPAR { -3.14159 3.14159 -3.14159 3.14159 -3.14159 3.14159 -3.14159 3.14159 -3.14159 3.14159 0. -4.2 0. 16. 16. }
+  PPAR { (-6.5,-3.9) (6.5,4.) X 0. { (0.,0.) { # Ah # Ah } } FAST3D Y }
+  Zeta
+  \<< \-> X '(1./GAMMA(X))*\.S(0.,\oo,(u^(X-1.))/(EXP(u)-1.),u)'
+  \>>
+  GrebC `GBASIS([(X^2)-2,(Y^2)-3,(Z-X)-Y],[X,Y,Z])`
+  GrebB `GBASIS([((2*X)+(3*Y))-5,(X+(2*Y))-4],[X,Y])`
+  GrebA `GBASIS([X-1,Y-2,(Z-X)-Y],[X,Y,Z])`
+  Tarai
+  \<< \-> X Y Z
+    \<<
+      IF X Y \<=
+      THEN Y
+      ELSE X 1 - Y Z Tarai Y 1 - Z X Tarai Z 1 - X Y Tarai Tarai
+      END
+    \>>
+  \>>
+  TST26
+  \<< DEPTH \->LIST AXL
+  \>>
+  TST25 `GBASIS([((2*X)*Y)-(Y^2),(X^2)-((2*X)*Y)],[X,Y])`
+  SOCE "::
+%2 %100{ LAM A LAM B }
+BIND
+ LAM A
+ LAM B
+%^ 
+ABND
+;
+@"
+  JSBACH \164 60h External "J.S.BACH
+Violin Concert E major" External External External External \164 65h \164 2Fh "WR 2001" External External External External \164 2Fh External External {  } External External Code External Code External External External External External External External External External External External External External External External External \164 132h External External External External External "" External \164 8h External External External External External "" External External External External External External External External External External External External External External External External External External External External External External External External X External External External External External External External External External External \164 2h \164 FFFFFh External External External External External External External External External External
+  JSBACHP \164 5Eh External External "
+J.S.BACH
+  
+Violin Concert Emajor" External External External External Code External External External External X External External External External External External External External External External \164 2h \164 FFFFFh External External External External External External External External External External External
+  DICE
+  \<< RAND 10. * IP \-> X
+    \<<
+      CASE X 1. ==
+        THEN "ONE 1"
+        END X 2. ==
+        THEN "TWO 2"
+        END X 3. ==
+        THEN "THREE 3"
+        END X 4. ==
+        THEN "FOUR 4"
+        END X 5. ==
+        THEN "FIVE 5"
+        END X 6. ==
+        THEN "SIX 6"
+        END "Try again"
+      END
+    \>>
+  \>>
+  TIME4
+  \<< TICKS \-> X TICKA
+    \<< X \->NUM TICKS TICKA - B\->R 8192 / "TIME" \->TAG
+    \>>
+  \>>
+  TST24
+  \<<
+    WHILE KEY
+    REPEAT 40 1 BEEP
+    END
+  \>>
+  TST23
+  \<< \-> X
+    \<< 512 X BEEP
+    \>>
+  \>>
+  TST22
+  \<< \-> X
+    \<< X .5 BEEP
+    \>>
+  \>>
+  TST21
+  \<< { 128. 128. } RANM AXM DUP RANM
+    \<< *
+    \>> TIME3 NIP 128 3 ^ SWAP / OFF
+  \>>
+  TIME3
+  \<< TICKS \-> X TICKA
+    \<< X EVAL TICKS TICKA - B\->R 8192 / "TIME" \->TAG
+    \>>
+  \>>
+  TST20
+  \<< \-> X
+    \<< 1. 9.
+      FOR N X N N 1 + SUB 2.
+      STEP DEPTH \->LIST
+    \>>
+  \>>
+  ODETYPE "1st order linear"
+  FizzBuzz
+  \<< 1 100
+    FOR X
+      CASE X 3 MOD 0. == X 5 MOD 0. == AND
+        THEN "Fizz Buzz" # 504108h X 3 MOD 0. ==
+          THEN "Bizz"
+          END X 5 MOD 0. ==
+          THEN "Buzz"
+          END X
+        END
+      NEXT 100. \->LIST
+    \>>
+    TST19
+    \<< RAD { PICT PPAR VPAR } PURGE GRIDMAP 'SIN(X+(Y*i))' STEQ DRAW PICTURE
+    \>>
+    EQ '(((X^3)*Y)-((Y^3)*X))/21'
+    TST18
+    \<< { '(2^211)-1' '(2^227)-1' '(2^251)-1' } 1
+      \<< EVAL
+      \>> DOLIST 1
+      \<< ISPRIME?
+      \>> DOLIST { "2^211-1" "2^227-1" "2^251-1" } \->TAG EVAL
+    \>>
+    TST17
+    \<< { 1 2 3 4 5 6 } 1
+      \<<
+        IF DUP 3 \<=
+        THEN DROP
+        END
+      \>> DOLIST
+    \>>
+    NTIME
+    \<< DATE TIME TSTR MSGBOX
+    \>>
+    TST16
+    \<< PUSH { -2. -3. } SF 1 SIN POP
+    \>>
+    PCOMP
+    \<< \-> A
+      \<<
+        IF A TYPE 2. ==
+        THEN A 'X' STO
+          WHILE X "\013" POS
+          REPEAT X "\013" " " SREPL DROP 'X' STO
+          END
+        END X 'X' PURGE STR\->
+      \>>
+    \>>
+    TST15
+    \<<
+      DO 420. 2. BEEP
+      UNTIL KEY
+      END
+    \>>
+    DETST
+    \<< \-> X
+      \<< X CD\-> SREV H\->
+      \>>
+    \>>
+    ENTST
+    \<< \-> X
+      \<< X External \->H SREV \->CD
+      \>>
+    \>>
+    TST14
+    \<< { '(2^211)-1' '(2^227)-1' '(2^251)-1' } FACTOR { "2^211-1" "2^227-1" "2^251-1" } \->TAG EVAL
+    \>>
+    TST13
+    \<< 'TST13' RCL
+    \>>
+    TST12
+    \<< \-> X
+      \<< X MENU
+      \>>
+    \>>
+    TIME2
+    \<< \-> X
+      \<< TICKS X EVAL TICKS DEPTH ROLL - B\->R 8192 / "TIME" \->TAG
+      \>>
+    \>>
+    IERR 1.64493488655E-11
+    TIME1
+    \<< \-> X
+      \<< TICKS X EVAL TICKS ROT - B\->R 8192 / "TIME" \->TAG
+      \>>
+    \>>
+    TST10
+    \<<
+      WHILE DEPTH 1 >
+      REPEAT DROP
+      END
+    \>>
+    TST9
+    \<<
+      DO DROP
+      UNTIL DEPTH 1 ==
+      END
+    \>>
+    TST8
+    \<<
+      IFERR "Linear Sys Coeffs:" { ":Eq1:1 1
+:Eq2:-2 -3
+:Const:2 3" ALG V { 1. 9. } } INPUT OBJ\-> 6. \->LIST 1. * EVAL 2. \->ARRY 5. ROLLD { 2. 2. } \->ARRY / "Roots" \->TAG
+      THEN DROP2
+      END
+    \>>
+    TST61
+    \<< "GCDHeu, depth\164 0h" 1 DISP "try -5., z=4" 2 DISP 7 FREEZE
+    \>>
+    TST6
+    \<< "Choose" { A B C } 1 CHOOSE
+    \>>
+    TST5
+    \<< # 5F42h SYSEVAL
+    \>>
+    TST3
+    \<< MEM 50000 \>= "OK" "<50K memory" IFTE
+    \>>
+    TST2
+    \<< RAD { PICT PPAR VPAR } PURGE PARSURFACE { 'X*COS(Y)' 'X*SIN(Y)' X } STEQ 16. NUMX 16. NUMY -3.14159 3.14159 DUP2 DUP2 4. DUPN XVOL YVOL ZVOL XXRNG YYRNG 0. -4.2 0. EYEPT DRAW PICTURE
+    \>>
+    TSTB
+    \<<
+      IFERR PUSH -56 CF
+        DO 500 .5 BEEP 350 .5 BEEP
+        UNTIL KEY
+        END DROP POP
+      THEN POP
+      END
+    \>>
+    TST1
+    \<< -3 SF
+      \<< 0 1 1000
+        FOR X X SIN +
+        NEXT
+      \>> EVAL -3 CF
+    \>>
+  END

@@ -1,0 +1,29 @@
+%%HP: T(3)A(R)F(.);
+DIR
+  Negi1
+  \<<
+    DO CLLCD Pttn1 4 DISP 7 FREEZE .47 WAIT Pttn2 4 DISP 7 FREEZE .47 WAIT
+    UNTIL KEY
+    END DROP
+  \>>
+  Pttn2 "         o o
+       /  o "
+  Pttn1 "       \\ o o
+          o "
+  TST06
+  \<< 10. 1.
+    FOR X 1. 10.
+      START 2300. .08 X * BEEP .01 X * WAIT
+      NEXT -2.
+    STEP 1 150
+    START 2300. .08 BEEP .01 WAIT
+    NEXT
+  \>>
+  TST05
+  \<< CLLCD 6 1
+    FOR X " N / 6 " "N" X \->STR SREPL DROP -1
+    STEP 6 \->LIST 1
+    \<< 2 DISP 7 FREEZE TST05
+    \>> DOLIST " 0 / 6 " 2 DISP 7 FREEZE TSTB
+  \>>
+END
